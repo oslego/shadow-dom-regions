@@ -12,11 +12,16 @@
     
     .region{     
         -webkit-flow-from: myFlow;
-        width: 20%;
+        width: 45%;
+        float: left; 
         height: 350px;
         padding: 20px;   
         outline: 1px solid red;
-    }              
+    }                    
+    
+    .region + .region{
+        margin-left: 10%;
+    }
     
     </style>
 </head>
@@ -25,8 +30,17 @@
 
 <article>
     <h1>CSS Regions and Shadow DOM sitting in a DOM tree.</h1>
-    <p>This experiment shows how CSS Regions interacts with Shadow DOM.</p>
+    <p>This experiment shows how CSS Regions interacts with Shadow DOM.</p>    
+    
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>    
+    
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
 </article>
+
 
 
 <script type="text/javascript">     
@@ -57,11 +71,14 @@
             root.applyAuthorStyles = true;
         }     
         
-        var region = document.createElement("div");
-        region.className = "region";
+        var region1 = document.createElement("div");
+        region1.className = "region";
+        
+        var region2 = region1.cloneNode(false);
         
         root.appendChild(article);
-        root.appendChild(region); 
+        root.appendChild(region1);  
+        root.appendChild(region2); 
         
     }
 </script>    
