@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>CSS Regions and Shadow DOM</title>
+    <meta charset="UTF-8">  
+    
+    <style type="text/css" name="shadow-style">  
+    
+    article{
+        -webkit-flow-into: myFlow;
+    }       
+    
+    .region{     
+        -webkit-flow-from: myFlow;
+        width: 20%;
+        height: 350px;
+        padding: 20px;   
+        outline: 1px solid red;
+    }              
+    
+    </style>
+</head>
+<body>
+
+
+<article>
+    <h1>CSS Regions and Shadow DOM sitting in a DOM tree.</h1>
+    <p>This experiment shows how CSS Regions interacts with Shadow DOM.</p>
+</article>
+
+
+<script type="text/javascript">     
+    if (!window.WebKitShadowRoot){
+        console.error("No Shadow DOM support");
+    }       
+    
+    if (window.WebKitShadowRoot) { 
+        var host = document.querySelector("body");     
+        var article = document.querySelector("article");
+        var style = document.querySelector("style[name='shadow-style']");  
+        
+        
+        var root = new WebKitShadowRoot(host); 
+        
+        // ShadowRoot.applyAuthorStyles should tell the ShadowRoot to inherit the styles declared outside its boundaries.
+        // By default the DOM under the ShadowRoot will NOT inherit styles defined outside.   
+        if (typeof root.applyAuthorStyles === "undefined"){
+
+            // move the original stylesheet under the ShadowRoot
+            root.appendChild(style);
+
+            // scope the stylesheet to apply under the ShadowRoot
+            style.scoped = true;   
+        }
+        else{ 
+            // the syles declared outside should apply under the ShadowRoot  
+            root.applyAuthorStyles = true;
+        }     
+        
+        var region = document.createElement("div");
+        region.className = "region";
+        
+        root.appendChild(article);
+        root.appendChild(region); 
+        
+    }
+</script>    
+</body>
+</html>
