@@ -48,7 +48,7 @@ There should be no placeholder `<div class="region">` elements in the page sourc
 
 **Screenshot of expected result**
 
-![CSS Regions and Shadow DOM in Google Chrome](expected-result.png)  
+![CSS Regions and Shadow DOM in Google Chrome](http://s16.postimage.org/7tzthtgud/expected_result.png)  
      
 
 Troubleshooting
