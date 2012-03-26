@@ -2,26 +2,22 @@
 <html>
 <head>
     <title>CSS Regions and Shadow DOM</title>
-    <meta charset="UTF-8">  
+    <meta charset="UTF-8">
     
-    <style type="text/css" name="shadow-style">  
+    <style type="text/css" name="shadow-style">      
     
     article{
-        -webkit-flow-into: myFlow;
-    }       
+        -webkit-flow-into: myFlow;    
+    }  
     
     .region{     
         -webkit-flow-from: myFlow;
-        width: 45%;
-        float: left; 
+        width: 35%;
+        float: left;
+        padding: 5%; 
         height: 350px;
-        padding: 20px;   
-        outline: 1px solid red;
-    }                    
-    
-    .region + .region{
-        margin-left: 10%;
-    }
+        outline: 1px solid green;
+    }           
     
     </style>
 </head>
@@ -30,10 +26,16 @@
 
 <article>
     <h1>CSS Regions and Shadow DOM sitting in a DOM tree.</h1>
-    <p>This experiment shows how CSS Regions interacts with Shadow DOM.</p>    
+    <p>This experiment shows how CSS Regions interact with Shadow DOM.</p> 
+    
+    <p>Be sure you're using <a href="http://tools.google.com/dlpage/chromesxs" title="Chrome Canary - Google">a browser</a> supporting Shadow DOM, CSS Regions and scoped styles.</p>   
     
     <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+       If this works, you should see two boxes with text and green borders. When you resize the browser window the text should flow from one box to another. 
+    </p>
+    
+    <p>
+        There should be no <code>&lt;div class="region"&gt;</code> elements under the document <code>body</code>.                                                                                                           
     </p>    
     
     <p>
@@ -42,19 +44,16 @@
 </article>
 
 
-
-<script type="text/javascript">     
-    if (!window.WebKitShadowRoot){
-        console.error("No Shadow DOM support");
-    }       
-    
-    if (window.WebKitShadowRoot) { 
+<script type="text/javascript">   
+    if (!window.WebKitShadowRoot){  
+        document.body.innerHTML = 'No Shadow DOM support. Use <a href="http://tools.google.com/dlpage/chromesxs">Google Chrome Canary</a>'
+    }
+    else{  
         var host = document.querySelector("body");     
-        var article = document.querySelector("article");
-        var style = document.querySelector("style[name='shadow-style']");  
-        
-        
         var root = new WebKitShadowRoot(host); 
+        
+        var article = document.querySelector("article");
+        var style = document.querySelector("style[name='shadow-style']");
         
         // ShadowRoot.applyAuthorStyles should tell the ShadowRoot to inherit the styles declared outside its boundaries.
         // By default the DOM under the ShadowRoot will NOT inherit styles defined outside.   
@@ -78,8 +77,7 @@
         
         root.appendChild(article);
         root.appendChild(region1);  
-        root.appendChild(region2); 
-        
+        root.appendChild(region2);      
     }
 </script>    
 </body>
