@@ -31,7 +31,7 @@ Crash course into Shadow DOM
 
 The developer can choose to encapsulate these modules as loosely or as strictly as required. This way outside code and stylesheets may or may not affect to the inner workings of the module.
 
-Dimitry Glazkov, initiator of the proposal, explains the [Shadow DOM concept](http://glazkov.com/2011/01/14/what-the-heck-is-shadow-dom/).  
+Dimitri Glazkov, initiator of the proposal, explains the [Shadow DOM concept](http://glazkov.com/2011/01/14/what-the-heck-is-shadow-dom/).  
 
 Shadow DOM is laying the groundwork for Web Components. Christian Cantrell briefly explains this in a video of [Shadow DOM and Web Components](http://www.youtube.com/watch?v=pQOuHNm5seY). 
 
