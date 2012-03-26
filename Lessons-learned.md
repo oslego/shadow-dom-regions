@@ -155,7 +155,7 @@ Because the styles defined outside the shadow root cannot be applied within its 
 &lt;/script&gt; 
 </pre>  
 
-When implemented, the use of `applyAuthorStyles` allows me to define named flows outside the Shadow DOM and regions in the Shadow DOM
+When it is implemented, applyAuthorStyles will let me define named flows outside the Shadow DOM and regions inside the Shadow DOM.
 
 <pre>
 // create a new placeholder
