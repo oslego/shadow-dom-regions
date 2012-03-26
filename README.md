@@ -35,7 +35,7 @@ At the time of this writing - March 2012, Google Chrome Dev channel and Google C
 
 * type `about:flags` into the address bar of the browser;
 
-* find the "Enable <style scoped>" flag and toggle it on;
+* find the "Enable &lt;style scoped&gt;" flag and toggle it on;
 
 * restart the browser;
 
