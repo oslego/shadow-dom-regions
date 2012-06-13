@@ -12,11 +12,11 @@ Learn, create and have fun! ;)
     <title>CSS Regions and Shadow DOM</title>
     <meta charset="UTF-8">
     
-    <style type="text/css" name="shadow-style">      
+    <style type="text/css">      
     
     article{
         -webkit-flow-into: myFlow;    
-    }  
+    } 
     
     .region{     
         -webkit-flow-from: myFlow;
@@ -25,68 +25,56 @@ Learn, create and have fun! ;)
         padding: 5%; 
         height: 350px;
         outline: 1px solid green;
-    }           
+    }               
     
     </style>
 </head>
-<body>
-
-
+<body> 
+    
 <article>
-    <h1>CSS Regions and Shadow DOM sitting in a DOM tree.</h1>
-    <p>This experiment shows how CSS Regions interact with Shadow DOM.</p> 
-    
-    <p>Be sure you're using <a href="http://tools.google.com/dlpage/chromesxs" title="Chrome Canary - Google">a browser</a> supporting Shadow DOM, CSS Regions and scoped styles.</p>   
+    <h1>CSS Regions and Shadow DOM sitting in a DOM tree</h1>
+    <p>This experiment shows how CSS Regions interact with Shadow DOM.</p>
     
     <p>
-       If this works, you should see two boxes with text and green borders. When you resize the browser window the text should flow from one box to another. 
+       It works if you see two boxes with text and green borders. When you resize the browser window the text should flow from one box to another. 
+    </p> 
+    
+    <p>Be sure you're using <a href="http://tools.google.com/dlpage/chromesxs" title="Chrome Canary - Google">a browser</a> supporting Shadow DOM and CSS Regions.</p>   
+    
+    <p>
+        There should be no <code>&lt;div class="region"&gt;</code> elements under <code>&lt;div id="shadow-host"&gt;</code> .                                                                                                           
     </p>
     
-    <p>
-        There should be no <code>&lt;div class="region"&gt;</code> elements under the document <code>body</code>.                                                                                                           
-    </p>    
+    <h2>How it works</h2>    
     
     <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
+        The content of the <code>&lt;article&gt;</code> tag is associated with the named flow called 'myFlow'. A shadow root is created under <code>&lt;div id="shadow-host"&gt;</code> and two regions that consume from the 'myFlow' named flow are appended to it.
+    </p> 
+    <p>By default shadow root child nodes are not affected by styles declared outside the shadow DOM tree. This means that the regions don't render content from the named flow which is declared outside.</p>
+
+    <p>Switching the boolean <code>applyAuthorStyles</code> flag on the shadow root to 'true' changes the behavior. This means that styles defined outside are inherited by the regions nested under the shadow root. </p>
 </article>
 
+<div id="shadow-host"></div>
 
 <script type="text/javascript">   
     if (!window.WebKitShadowRoot){  
         document.body.innerHTML = 'No Shadow DOM support. Use <a href="http://tools.google.com/dlpage/chromesxs">Google Chrome Canary</a>'
     }
     else{  
-        var host = document.querySelector("body");     
-        var root = new WebKitShadowRoot(host); 
-        
-        var article = document.querySelector("article");
-        var style = document.querySelector("style[name='shadow-style']");
-        
-        // ShadowRoot.applyAuthorStyles should tell the ShadowRoot to inherit the styles declared outside its boundaries.
-        // By default the DOM under the ShadowRoot will NOT inherit styles defined outside.   
-        if (typeof root.applyAuthorStyles === "undefined"){
+        var root = new WebKitShadowRoot(document.querySelector("#shadow-host")),
+            region = document.createElement("div")
 
-            // move the original stylesheet under the ShadowRoot
-            root.appendChild(style);
+        region.className = "region"
 
-            // scope the stylesheet to apply under the ShadowRoot
-            style.scoped = true;   
-        }
-        else{ 
-            // the syles declared outside should apply under the ShadowRoot  
-            root.applyAuthorStyles = true;
-        }     
-        
-        var region1 = document.createElement("div");
-        region1.className = "region";
-        
-        var region2 = region1.cloneNode(false);
-        
-        root.appendChild(article);
-        root.appendChild(region1);  
-        root.appendChild(region2);      
-    }
+        // ShadowRoot.applyAuthorStyles tells the ShadowRoot to inherit the styles declared outside its boundaries.
+        // By default the DOM under the ShadowRoot will NOT inherit styles defined outside.
+        root.applyAuthorStyles = true;   
+
+        // Generate regions under the ShadowRoot
+        root.appendChild(region)  
+        root.appendChild(region.cloneNode(false))      
+    }    
 </script>    
 </body>
 </html>
