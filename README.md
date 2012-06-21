@@ -44,4 +44,4 @@ You should see two green border boxes with text flowing between them when the br
 
 **Screenshot of expected result**
 
-![CSS Regions and Shadow DOM in Google Chrome](./expected-result.png)  
+![CSS Regions and Shadow DOM in Google Chrome](http://s17.postimage.org/yhccfeswv/expected_result.png)  
