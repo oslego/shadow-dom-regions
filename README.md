@@ -41,8 +41,7 @@ At the time of this writing Google Chrome Dev channel and Google Chrome Canary b
 Expected result
 -----
 You should see two green border boxes with text flowing between them when the browser window is resized. 
-There should be no placeholder `<div class="region">` elements in the page source, outside the Shadow DOM.
 
 **Screenshot of expected result**
 
-![CSS Regions and Shadow DOM in Google Chrome](http://s16.postimage.org/7tzthtgud/expected_result.png)  
+![CSS Regions and Shadow DOM in Google Chrome](./expected-result.png)  
