@@ -12,7 +12,11 @@ Learn, create and have fun! ;)
     <title>CSS Regions and Shadow DOM</title>
     <meta charset="UTF-8">
     
-    <style type="text/css">      
+    <style type="text/css">
+    
+    body{ 
+        font-family: Helvetica, Arial, sans-serif;
+    }      
     
     article{
         -webkit-flow-into: myFlow;    
@@ -20,10 +24,10 @@ Learn, create and have fun! ;)
     
     .region{     
         -webkit-flow-from: myFlow;
-        width: 35%;
-        float: left;
+        width: 40%;
         padding: 5%; 
-        height: 350px;
+        height: 350px; 
+        float: left;
         outline: 1px solid green;
     }               
     
@@ -32,7 +36,7 @@ Learn, create and have fun! ;)
 <body> 
     
 <article>
-    <h1>CSS Regions and Shadow DOM sitting in a DOM tree</h1>
+    <h1>Demo of CSS Regions working with Shadow DOM</h1>
     <p>This experiment shows how CSS Regions interact with Shadow DOM.</p>
     
     <p>
